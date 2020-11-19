@@ -35,10 +35,13 @@ __root="$(cd "$(dirname "${__dir}")" && pwd)" # <-- change this as it depends on
 
 
 ########################### properties config ##########################
-docker_repository="fiscoorg/weoracle-web"
+image_organization=fiscoorg
+image_name="weoracle-web"
 docker_push="no"
 latest_tag=latest
 new_tag=
+
+nginx_config=weoracle-web.conf
 
 
 ########################### parse param ##########################
@@ -52,12 +55,12 @@ Usage:
     -t          New tag for image, required.
 
     -p          Push image to docker hub, default no.
-    -r          Which repository new image will be pushed to, default fiscoorg/weoracle-web.
+    -i          Default organization, default fiscoorg.
     -h          Show help info.
 USAGE
     exit 1
 }
-while getopts t:r:ph OPT;do
+while getopts t:i:ph OPT;do
     case $OPT in
         t)
             new_tag=$OPTARG
@@ -65,8 +68,8 @@ while getopts t:r:ph OPT;do
         p)
             docker_push=yes
             ;;
-        r)
-            docker_repository=${OPTARG}
+        i)
+            image_organization=${OPTARG}
             ;;
         h)
             usage
@@ -89,21 +92,22 @@ fi
 
 
 ########################### build docker image ##########################
+image_repository="${image_organization}/${image_name}"
+
 # copy nginx config file
-cp "${__root}"/docker/oracle-web.conf "${__root}"/dist
+cp "${__root}"/docker/${nginx_config} "${__root}"/dist
 
 # docker build
-new_image="${docker_repository}":"${new_tag}"
-cd "${__root}"/dist && docker build -t "${new_image}" -f "${__root}"/docker/Dockerfile .
-docker tag "${new_image}" ${docker_repository}:"${latest_tag}"
+cd "${__root}"/dist && docker build -t "${image_repository}:${new_tag}" -f "${__root}"/docker/Dockerfile .
+docker tag "${image_repository}:${new_tag}" "${image_repository}:${latest_tag}"
 
 # delete extra files
-rm -f "${__root}"/dist/oracle-web.conf
+rm -f "${__root}"/dist/${nginx_config}
 
 ########################### push docker image ##########################
 if [[ "${docker_push}"x == "yesx" ]] ; then
-    docker push "${docker_repository}":"${new_tag}"
-    docker push "${docker_repository}":"${latest_tag}"
+    docker push "${image_repository}:${new_tag}"
+    docker push "${image_repository}:${latest_tag}"
 fi
 
 
