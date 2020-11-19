@@ -60,7 +60,7 @@ USAGE
 while getopts t:r:ph OPT;do
     case $OPT in
         t)
-            env=$OPTARG
+            new_tag=$OPTARG
             ;;
         p)
             docker_push=yes

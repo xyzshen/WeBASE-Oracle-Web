@@ -1,3 +1,5 @@
+!docker/oracle-web.conf
+
 .DS_Store
 node_modules/
 npm-debug.log*
@@ -13,4 +15,7 @@ yarn-error.log*
 *.sln
 *.local
 
+
+
 package-lock.json
+
