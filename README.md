@@ -1,10 +1,10 @@
 # Oracle-Web
-#开发文档
+开发文档
 
 
 ## 1、开发环境搭建
 
-###1.1 依赖环境
+1.1 依赖环境
 
 | 环境     | 版本              |
 | ------   | ---------------  |
@@ -14,7 +14,7 @@ nodejs下载地址：https://nodejs.org/en/download/
 
 ### 1.2 安装依赖包
 
-####1.2.1 拉取代码
+1.2.1 拉取代码
 
 > 执行命令：
 
@@ -32,8 +32,7 @@ nodejs下载地址：https://nodejs.org/en/download/
 
 下载依赖包
 
-
-###1.3 启动项目
+1.3 启动项目
 
 > 在项目根目录使用命令：
 
@@ -41,7 +40,9 @@ nodejs下载地址：https://nodejs.org/en/download/
 
 > 控制台出现：
 
-    Listening at http ://localhost:3006
+```
+Listening at http ://localhost:3006
+```
 
 > 在浏览器输入"http ://localhost:3006"。
 
@@ -49,28 +50,29 @@ nodejs下载地址：https://nodejs.org/en/download/
 
 > 修改跨域配置，在config文件夹index.js中，在dev中的proxyTable修改，修改地址即可,请求的url路径必须加上前缀。
 
-    dev: {
-            host: 'localhost', // can be overwritten by process.env.HOST
-            port: 3006, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
-            autoOpenBrowser: false,
-            errorOverlay: true,
-            notifyOnErrors: true,
-            poll: false, // https://webpack.js.org/configuration/dev-server/#devserver-watchoptions-
-            assetsSubDirectory: 'static',
-            assetsPublicPath: '/',
-            proxyTable: {
-            '/oracle':{
-                target:'http://127.0.0.1:8080/',  //在此修改跨域地址，这里是服务ip和端口，且可以访问
-                changeOrigin:true,
-                pathRewrite:{
-                    '^/oracle':''
-                    }
-                },
+```js
+dev: {
+        host: 'localhost', // can be overwritten by process.env.HOST
+        port: 3006, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
+        autoOpenBrowser: false,
+        errorOverlay: true,
+        notifyOnErrors: true,
+        poll: false, // https://webpack.js.org/configuration/dev-server/#devserver-watchoptions-
+        assetsSubDirectory: 'static',
+        assetsPublicPath: '/',
+        proxyTable: {
+        '/oracle':{
+            target:'http://127.0.0.1:5012/',  //在此修改跨域地址，这里是服务ip和端口，且可以访问
+            changeOrigin:true,
+            pathRewrite:{
+                '^/oracle':''
+                }
             },
         },
+    },
+```
 
-
-###1.4 模拟数据
+1.4 模拟数据
 
 模拟数据在mock.js中，在开发联调前使用，使用中注意mock.js的url和axios请求的url要保持一致。`包括get拼接在url上面的参数`
 
@@ -78,40 +80,40 @@ nodejs下载地址：https://nodejs.org/en/download/
 
 > axios请求地址：
 
-    overview请求url： /webase-web/network/general/1
+    overview请求url： /Oracle-Service/xx/xx/
 
 > mock.js地址：
 
-    Mock.mock('/webase-web/network/general/1',function (req,res) {     //url和上面axios相同
-        return {
-            "code":0,
-            "message":"success",
-            "data":{
-                "orgCount":1,
-                "nodeCount":1,
-                "contractCount":11,
-                "latestBlock":10,
-                "transactionCount":10,
-            }
+```js
+Mock.mock('/Oracle-Service/xx/xx/',function (req,res) {     //url和上面axios相同
+    return {
+        "code":0,
+        "message":"success",
+        "data":{
+            
         }
-    });
+    }
+});
+```
 
 > main.js引用mock.js：
 
-    Vue.use(ElementUI);
-    // require('./mock')    //直接require引入，开发时放开注释，打包时注释
-    /* eslint-disable no-new */
-    new Vue({
-      el: '#app',
-      router,
-      template: '<App/>',
-      components: { App }
-    })
+```js
+Vue.use(ElementUI);
+// require('./mock')    //直接require引入，开发时放开注释，打包时注释
+/* eslint-disable no-new */
+new Vue({
+  el: '#app',
+  router,
+  template: '<App/>',
+  components: { App }
+})
+```
 
 
 ## 2、项目打包部署
 
-###2.1 项目打包
+2.1 项目打包
 
 > 切换到项目根目录，执行命令：
 
@@ -119,13 +121,13 @@ nodejs下载地址：https://nodejs.org/en/download/
 
 > 进行打包，生成打包文件dist，在项目根目录下。
 
-###2.2 部署
+2.2 部署
 
 nginx配置
 
 ```Nginx
     upstream oracle_server{
-        server 10.0.0.1:5001; # 服务ip和端口
+        server 10.0.0.1:5012; # 服务ip和端口
     }
     server {
         listen       5000 default_server; # 前端端口（端口需要开通策略且不能被占用）
