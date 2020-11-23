@@ -1,8 +1,5 @@
 name: Docker Build And Push To Docker Hub
 
-env:
-  DOCKER_REPOSITORY="yuanmomo/trust-oarcle-web"
-
 on:
 #  schedule:
 #    - cron: '0 10 * * *' # everyday at 10am
@@ -12,6 +9,10 @@ on:
     tags:
       - 'v*.*.*'
 #  pull_request:
+
+env:
+  DOCKER_REPOSITORY: yuanmomo/trust-oarcle-web
+
 
 jobs:
   main:
