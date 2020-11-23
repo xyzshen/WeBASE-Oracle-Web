@@ -62,7 +62,7 @@ jobs:
         with:
           context: ./dist
           push: true
-          file: Dockerfile
+          file: ./dist/Dockerfile
           platforms: linux/amd64
           tags: ${{ steps.set_docker_tag.outputs.docker_tag }}
 
