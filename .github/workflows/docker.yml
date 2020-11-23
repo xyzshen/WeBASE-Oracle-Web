@@ -59,7 +59,7 @@ jobs:
       - name: Copy nginx config file
         id: copy-nginx-file
         run: |
-          cp .docker/weoracle-web.conf dist/
+          cp ./docker/weoracle-web.conf dist/
 
       - name: Build and push
         id: docker_build
