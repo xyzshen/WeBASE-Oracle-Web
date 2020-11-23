@@ -63,12 +63,12 @@ export default {
                 {
                     enName: "chainId",
                     name: '链编号',
-                    tdWidth: ''
+                    tdWidth: '100'
                 },
                 {
                     enName: "group",
                     name: '群组编号',
-                    tdWidth: ''
+                    tdWidth: '100'
                 },
                 {
                     enName: "oracleCoreContractAddress",

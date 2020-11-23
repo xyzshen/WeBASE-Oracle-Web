@@ -70,22 +70,22 @@ export default {
                 {
                     enName: "sourceType",
                     name: '请求类型',
-                    tdWidth: ''
+                    tdWidth: '150'
                 },
                 {
                     enName: "reqStatus",
                     name: "请求结果",
-                    tdWidth: ""
+                    tdWidth: "150"
                 },
                 {
                     enName: "processTime",
                     name: "请求耗时（ms）",
-                    tdWidth: ""
+                    tdWidth: "150"
                 },
                 {
                     enName: "modifyTime",
                     name: "修改时间",
-                    tdWidth: ""
+                    tdWidth: "200"
                 },
             ]
             return arr

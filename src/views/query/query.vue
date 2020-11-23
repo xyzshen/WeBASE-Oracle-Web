@@ -23,11 +23,12 @@
                         </template>
                         <template v-else-if="key == 'reqQuery'">
                             <span class="result-key">{{key}}：</span>
-                            <span class="result-val" v-show="searchResult['sourceType'] ===0 ">{{searchResult[key]}}</span>
+                            <span class="result-val">{{searchResult[key]}}</span>
                         </template>
-                        <template v-else-if="key == 'reqStatus'">
+                        <template v-else-if="key == 'reqStatus'">   
                             <span class="result-key">{{key}}：</span>
                             <span class="result-val">{{searchResult[key] | translateReqStatus}}</span>
+                            <span v-if="searchResult['error']">（{{searchResult['error']}}）</span>
                         </template>
                         <template v-else-if="key == 'processTime'">
                             <span class="result-key">{{key}}：</span>
