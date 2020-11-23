@@ -56,13 +56,18 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
+      - name: Copy nginx config file
+        id: copy-nginx-file
+        run: |
+          cp .docker/weoracle-web.conf dist/
+
       - name: Build and push
         id: docker_build
         uses: docker/build-push-action@v2
         with:
           context: ./dist
           push: true
-          file: ./dist/Dockerfile
+          file: ./docker/Dockerfile
           platforms: linux/amd64
           tags: ${{ steps.set_docker_tag.outputs.docker_tag }}
 

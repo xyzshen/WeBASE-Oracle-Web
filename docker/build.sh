@@ -94,9 +94,16 @@ fi
 ########################### build docker image ##########################
 image_repository="${image_organization}/${image_name}"
 
+# copy nginx config file
+cp "${__root}"/docker/${nginx_config} "${__root}"/dist
+
 # docker build
+cd "${__root}"/dist && docker build -t "${image_repository}:${new_tag}" -f "${__root}"/docker/Dockerfile .
 cd "${__root}"/dist && docker build -t "${image_repository}:${new_tag}" -f Dockerfile .
 docker tag "${image_repository}:${new_tag}" "${image_repository}:${latest_tag}"
+
+# delete extra files
+rm -f "${__root}"/dist/${nginx_config}
 
 
 ########################### push docker image ##########################
