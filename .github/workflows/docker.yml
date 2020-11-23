@@ -11,7 +11,7 @@ on:
 #  pull_request:
 
 env:
-  DOCKER_REPOSITORY: yuanmomo/weoarcle-web
+  DOCKER_REPOSITORY: yuanmomo/weoracle-web
 
 
 jobs:
