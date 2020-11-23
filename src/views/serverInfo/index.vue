@@ -171,6 +171,10 @@ export default {
                     const { status, data } = res
                     if (data.code === 0) {
                         this.allChainAndGroup = data.data
+                        if (data.data.length > 0) {
+                            this.formInline.chainId = data.data[0]['chainId']
+                            this.formInline.groupId = data.data[0]['groupIdList'][0]
+                        }
                     } else {
 
                     }
