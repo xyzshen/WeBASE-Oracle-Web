@@ -74,4 +74,4 @@ jobs:
         with:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
-          args: [${{ steps.set_docker_tag.outputs.docker_tag }}] of ${{github.repository }} build success.
+          args: ${{ steps.set_docker_tag.outputs.docker_tag }} of ${{github.repository }} build success.
