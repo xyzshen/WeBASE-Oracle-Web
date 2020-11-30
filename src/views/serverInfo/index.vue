@@ -173,10 +173,18 @@ export default {
                         this.allChainAndGroup = data.data
                         if (data.data.length > 0) {
                             this.formInline.chainId = data.data[0]['chainId']
-                            this.formInline.groupId = data.data[0]['groupIdList'][0]
+                            this.groupList = data.data[0]['groupIdList']
+                            if(this.groupList.length > 0){
+                                this.formInline.groupId = data.data[0]['groupIdList'][0]
+                            }
+                            this.onSubmit('ruleForm')
                         }
                     } else {
-
+                        this.$message({
+                            type: 'error',
+                            message: data.message,
+                            duration: 2000
+                        })
                     }
                 })
                 .catch(err => {
@@ -196,7 +204,11 @@ export default {
                         this.list = data.data
                         this.total = data.totalCount
                     } else {
-
+                        this.$message({
+                            type: 'error',
+                            message: data.message,
+                            duration: 2000
+                        })
                     }
                 })
                 .catch(err => {
