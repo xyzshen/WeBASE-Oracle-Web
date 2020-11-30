@@ -180,7 +180,11 @@ export default {
                             this.onSubmit('ruleForm')
                         }
                     } else {
-
+                        this.$message({
+                            type: 'error',
+                            message: data.message,
+                            duration: 2000
+                        })
                     }
                 })
                 .catch(err => {
@@ -200,7 +204,11 @@ export default {
                         this.list = data.data
                         this.total = data.totalCount
                     } else {
-
+                        this.$message({
+                            type: 'error',
+                            message: data.message,
+                            duration: 2000
+                        })
                     }
                 })
                 .catch(err => {

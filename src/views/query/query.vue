@@ -3,7 +3,7 @@
         <v-content-head :headTitle="'oracle查询'"></v-content-head>
         <div class="module-wrapper" style="margin-bottom: 20px">
             <div class="search-part">
-                <el-input placeholder="" v-model="inputText" class="input-with-select">
+                <el-input placeholder="请求ID" v-model="inputText" class="input-with-select">
                     <el-button slot="append" icon="el-icon-search" @click="search"></el-button>
                 </el-input>
             </div>
