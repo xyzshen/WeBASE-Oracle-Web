@@ -1,11 +1,11 @@
 #### run command:
-####    docker run --name weoracle-web -d -p 5000:5000 fiscoorg/weoracle-web:latest
+####    docker run --name trustoracle-web -d -p 5000:5000 fiscoorg/trustoracle-web:latest
 
 
 FROM nginx:stable-alpine as prod
 
 # copy server config file for nginx
-COPY weoracle-web.conf /etc/nginx/conf.d/default.conf
+COPY trustoracle-web.conf /etc/nginx/conf.d/default.conf
 
 # copy files of dist into html directory
 COPY index.html /usr/share/nginx/html
