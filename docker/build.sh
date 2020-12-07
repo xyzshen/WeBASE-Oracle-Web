@@ -36,12 +36,12 @@ __root="$(cd "$(dirname "${__dir}")" && pwd)" # <-- change this as it depends on
 
 ########################### properties config ##########################
 image_organization=fiscoorg
-image_name="weoracle-web"
+image_name="trustoracle-web"
 docker_push="no"
 latest_tag=latest
 new_tag=
 
-nginx_config=weoracle-web.conf
+nginx_config=trustoracle-web.conf
 
 
 ########################### parse param ##########################
