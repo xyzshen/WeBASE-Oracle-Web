@@ -23,7 +23,7 @@ nodejs下载地址：https://nodejs.org/en/download/
 
 > 切换到项目目录：
 
-    cd D:\project\WeBASE-Oracle-Web
+    cd D:\project\TrustOracle
 
 > 使用命令：
 

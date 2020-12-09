@@ -146,9 +146,11 @@ export default {
 </script>
 <style scoped>
 .content-head-wrapper {
-    width: 100%;
-    background-color: #f8f8f8 !important;
-    margin-bottom: 30px;
+    width: calc(100%);
+    background-color: #181f2e;
+    text-align: left;
+    line-height: 54px;
+    position: relative;
 }
 .content-head-wrapper::after {
     display: block;
@@ -156,50 +158,28 @@ export default {
     clear: both;
 }
 .content-head-icon {
-    color: #979898;
+    color: #fff;
     font-weight: bold;
     cursor: pointer;
 }
 .content-head-title {
     margin-left: 40px;
-    float: left;
-    font-size: 32px;
-    /* color: #fff; */
-    /* font-weight: bold; */
-    line-height: 90px;
+    display: inline-block;
+    font-size: 16px;
+    color: #fff;
+    font-weight: bold;
 }
 .content-head-network {
     float: right;
     padding-right: 10px;
-    line-height: 90px;
-}
-.content-head-item {
-    display: inline-block;
-}
-.group-content {
     position: relative;
-    cursor: pointer;
 }
-.group-content ul {
-    position: absolute;
-    left: 20px;
-    top: 35px;
-    color: #666;
-    z-index: 2;
-    background-color: #fff;
-    border: 1px solid #ebeef5;
-    border-radius: 4px;
-    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+.content-head-version {
+    color: #bbb;
 }
-.group-content ul li {
-    height: 32px;
-    line-height: 32px;
-    cursor: pointer;
-    padding: 0 20px;
-}
-.group-content ul li:hover {
-    background-color: #ecf5ff;
-    color: #66b1ff;
+.content-head-version-data {
+    display: inline-block;
+    padding-right: 10px;
 }
 .browse-user {
     text-align: center;
@@ -209,6 +189,7 @@ export default {
     color: #cfd7db;
 }
 .sign-out-wrapper {
+    line-height: 32px;
     text-align: center;
 }
 .sign-out {
@@ -216,7 +197,7 @@ export default {
     color: #ed5454;
 }
 .change-password {
-    color: #2d5f9e;
+    color: #0db1c1;
     cursor: pointer;
 }
 .network-name {
@@ -230,7 +211,7 @@ export default {
     color: #2d5f9e;
     cursor: default;
 }
-.content-head-network a:nth-child(1) {
+.content-head-network-link {
     text-decoration: none;
     outline: none;
     color: #cfd7db;
@@ -238,31 +219,55 @@ export default {
     border-right: 1px solid #657d95;
     margin-right: 15px;
 }
-.content-head-network::after {
-    display: block;
-    content: "";
-    clear: both;
+.contant-head-name {
+    position: relative;
+    cursor: pointer;
 }
-a {
+.contant-head-name ul {
+    position: absolute;
+    width: 150%;
+    left: -10px;
+    top: 35px;
+    background-color: #fff;
+    color: #666;
+    text-align: center;
+    z-index: 9999999;
+    box-shadow: 1px 4px 4px;
 }
-.dialog-text {
-    word-break: break-all;
+.contant-head-name ul li {
+    width: 100%;
+    padding: 0 10px;
+    height: 32px;
+    line-height: 32px;
+    cursor: pointer;
 }
-.content-head-lang {
-    line-height: 54px;
-    float: right;
+.group-item {
+    line-height: 32px;
+    text-align: center;
+    max-height: 200px;
+    overflow-y: auto;
+    position: relative;
+}
+.group-item-list {
+    cursor: pointer;
+}
+.group-item-list:hover {
+    color: #0db1c1;
 }
 .right-menu-item {
-   padding: 0 20px;
+    padding: 0 20px;
 }
 .hover-effect {
     cursor: pointer;
     /* transition: background 0.3s; */
 }
-/* .hover-effect:hover {
-    background: rgba(0, 0, 0, 0.025);
-} */
-.font-color-333{
-    color: #333
+.content-head-lang {
+    position: absolute;
+    /* background-color: #fff; */
+    right: 350px;
+    top: 0px;
+}
+.version-item {
+    line-height: 22px;
 }
 </style>

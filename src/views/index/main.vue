@@ -60,7 +60,7 @@ export default {
 }
 .main-wrapper {
     width: 100%;
-    background: #eee;
+    background: #f7f7f7;
     height: 100%;
 }
 .main-wrapper::after {
@@ -76,13 +76,14 @@ export default {
     bottom: 0;
     overflow-x: hidden;
     overflow-y: auto;
+    z-index: 3;
 }
 .view-wrapper {
     height: 100%;
-    padding-left: 340px;
+    padding-left: 200px;
 }
 .menu-show {
-    width: 340px;
+    width: 200px;
     transition: width 0.5s;
     -moz-transition: width 0.5s;
     -webkit-transition: width 0.5s;
@@ -97,8 +98,8 @@ export default {
     -o-transition: width 2s;
 }
 .view-show {
-    overflow-y: auto;
-    width: calc(100% - 340px);
+    /* padding-left: 200px; */
+    width: calc(100% - 200px);
     transition: width 0.5s;
     -moz-transition: width 0.5s;
     -webkit-transition: width 0.5s;
@@ -106,7 +107,7 @@ export default {
 }
 .view-hide {
     padding-left: 56px;
-    overflow-y: auto;
+    /* width: calc(100% - 56px); */
     transition: width 0.5s;
     -moz-transition: width 0.5s;
     -webkit-transition: width 0.5s;

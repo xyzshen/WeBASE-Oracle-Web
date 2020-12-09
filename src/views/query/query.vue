@@ -12,31 +12,31 @@
             <div style="padding: 20px 50px 30px 50px;line-height: 40px;">
                 <p>值是:</p>
                 <ul v-if="JSON.stringify(searchResult) != '{}' ">
-                    <li v-for="(key , index) in searchResultKeyList" class="result-item">
-                        <template v-if="key == 'result'">
-                            <span class="result-key">{{key}}：</span>
-                            <el-input type="textarea" class="result-val" v-model="searchResult[key]"></el-input>
+                    <li v-for="(item , index) in searchResultKeyList" class="result-item">
+                        <template v-if="item.enName == 'result'">
+                            <span class="result-key">{{item.name}}：</span>
+                            <el-input type="textarea" class="result-val" v-model="searchResult[item.enName]"></el-input>
                         </template>
-                        <template v-else-if="key == 'sourceType'">
-                            <span class="result-key">{{key}}：</span>
-                            <span class="result-val">{{searchResult[key] | translateSourceType}}</span>
+                        <template v-else-if="item.enName == 'sourceType'">
+                            <span class="result-key">{{item.name}}：</span>
+                            <span class="result-val">{{searchResult[item.enName] | translateSourceType}}</span>
                         </template>
-                        <template v-else-if="key == 'reqQuery'">
-                            <span class="result-key">{{key}}：</span>
-                            <span class="result-val">{{searchResult[key]}}</span>
+                        <template v-else-if="item.enName == 'reqQuery'">
+                            <span class="result-key">{{item.name}}：</span>
+                            <span class="result-val">{{searchResult[item.enName]}}</span>
                         </template>
-                        <template v-else-if="key == 'reqStatus'">   
-                            <span class="result-key">{{key}}：</span>
-                            <span class="result-val">{{searchResult[key] | translateReqStatus}}</span>
+                        <template v-else-if="item.enName == 'reqStatus'">   
+                            <span class="result-key">{{item.name}}：</span>
+                            <span class="result-val">{{searchResult[item.enName] | translateReqStatus}}</span>
                             <span v-if="searchResult['error']">（{{searchResult['error']}}）</span>
                         </template>
-                        <template v-else-if="key == 'processTime'">
-                            <span class="result-key">{{key}}：</span>
-                            <span class="result-val">{{searchResult[key]}} ms</span>
+                        <template v-else-if="item.enName == 'processTime'">
+                            <span class="result-key">{{item.name}}：</span>
+                            <span class="result-val">{{searchResult[item.enName]}} ms</span>
                         </template>
                         <template v-else>
-                            <span class="result-key">{{key}}：</span>
-                            <span class="result-val">{{searchResult[key]}}</span>
+                            <span class="result-key">{{item.name}}：</span>
+                            <span class="result-val">{{searchResult[item.enName]}}</span>
                         </template>
                     </li>
                 </ul>
@@ -61,8 +61,36 @@ export default {
             inputText: '',
             searchResult: {},
             errorMessage: '',
-            searchResultKeyList: ['sourceType', 'reqQuery', 'userContract', 'processTime', 'reqStatus', 'result', 'timesAmount', 'createTime', 'modifyTime']
-        }
+            // searchResultKeyList: ['sourceType', 'reqQuery', 'userContract', 'processTime', 'reqStatus', 'result', 'timesAmount', 'createTime', 'modifyTime'],
+            searchResultKeyList: [{
+                enName: 'sourceType',
+                name:'请求类型'
+            },{
+                enName: 'reqQuery',
+                name:'请求地址'
+            },{
+                enName: 'userContract',
+                name:'用户合约地址'
+            },{
+                enName: 'processTime',
+                name:'处理时长'
+            },{
+                enName: 'reqStatus',
+                name:'请求状态'
+            },{
+                enName: 'result',
+                name:'请求结果'
+            },{
+                enName: 'timesAmount',
+                name:'放大倍数'
+            },{
+                enName: 'createTime',
+                name:'创建时间'
+            },{
+                enName: 'modifyTime',
+                name:'完成时间'
+            },]
+        }   
     },
     mounted() {
         if (this.$route.query.reqId) {

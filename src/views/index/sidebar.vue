@@ -15,34 +15,36 @@
  */
 <template>
     <div style="height: 100%;">
-        <div style="height: 100%;background-color: #2c2e2f" class="sidebar-content" ref='sidebarContent'>
-            <div class="image-flex justify-center center font-color-fff" style="height: 54px;position:relative;" v-if="menuShowC">
-                <span class="font-28">
-                    WeBASE-Oracle-Web
-                </span>
+        <div style="height: 100%;background-color: #0c1220;box-sizing: border-box" class="sidebar-content" ref='sidebarContent'>
+            <div class="image-flex justify-center center" style="height: 54px;position:relative;" v-if="menuShowC">
+                <!-- <img :src="maxLog" alt="" style="width:120px"> -->
+                <span class="font-color-fff" style="font-weight: bold;font-size: 24px;">TrustOracle</span>
+                <!-- <span class="sidebar-contract-icon">
+                    <i class="el-icon-caret-left font-color-aeb1b5" @click="hideMune(true)" style="font-size: 18px;"></i>
+                </span> -->
             </div>
             <div class="mini-sidebar-contract-icon" v-if="!menuShowC" style="padding-bottom:40px">
                 <i class="el-icon-caret-right font-color-aeb1b5" @click="hideMune(false)" style="font-size: 18px;"></i>
             </div>
-            <el-menu default-active="999" router class="el-menu-vertical-demo" text-color="#9da2ab" active-text-color="#1f83e7" active-background-color="#2c2e2f" background-color="#2c2e2f" @select="select" :collapse="!menuShowC" @open="handleOpen" @close="handleClose">
+            <el-menu default-active="999" router class="el-menu-vertical-demo" text-color="#9da2ab" active-text-color="#1f83e7" active-background-color="#1e293e" background-color="#0c1220" @select="select" :collapse="!menuShowC" @open="handleOpen" @close="handleClose">
                 <template v-for="(item,index) in routesListC" v-if="item.menuShow">
                     <el-submenu v-if="!item.leaf" :index="`${index}`" ref="ele" class="">
                         <template slot="title">
                             <div :style="{'padding-left':  menuShowC ? '13px':''}">
                                 <i :class="item.iconCls" :style="{'color': activeIndex == index ? '#1f83e7':''}"></i>
-                                <span :class="{'font-color-37eef2': activeIndex == index}">{{item.name}}</span>
+                                <span :class="{'font-color-1f83e7': activeIndex == index}">{{item.name}}</span>
                             </div>
                         </template>
 
-                        <el-menu-item v-for="term in item.children" :key="term.path" :index="term.path" v-if="term.menuShow" style="padding-left: 58px" :style="{
+                        <el-menu-item v-for="term in item.children" :key="term.path" :index="term.path" v-if="term.menuShow" style="padding-left: 58px" :style="{'border-left':term.path == activeRoute ? '3px solid #1f83e7': '',
                                     'padding-left':term.path == activeRoute ? '55px': '58px',
-                                    'background-color':term.path == activeRoute ? '#1e293e': '#2c2e2f',}">
+                                    'background-color':term.path == activeRoute ? '#1e293e': '#0c1220',}">
                             <span>{{term.name}}</span>
                         </el-menu-item>
                     </el-submenu>
-                    <el-menu-item v-else-if="item.leaf&&item.children&&item.children.length" :index="item.children[0].path" :style="{
+                    <el-menu-item v-else-if="item.leaf&&item.children&&item.children.length" :index="item.children[0].path" :style="{'border-left':item.children[0].path == activeRoute ? '3px solid #1f83e7': '',
                                 'padding-left':item.children[0].path == activeRoute ? '30px': '33px',
-                                'background-color':item.children[0].path == activeRoute ? '#1e293e': '#2c2e2f',}">
+                                'background-color':item.children[0].path == activeRoute ? '#1e293e': '#0c1220',}">
                         <i :class="item.iconCls"></i>
                         <span slot="title">{{item.children[0].name}}</span>
                     </el-menu-item>
@@ -185,70 +187,14 @@ export default {
 </script>
 
 <style scoped>
-.sidebar-content {
-    position: relative;
-    overflow-y: auto;
-    overflow-x: hidden;
-}
-.sidebar-version {
-    width: 100%;
-    padding: 20px 0;
-    text-align: center;
-    color: #92a1b3;
-    border-top: 2px solid #20293c;
-    background-color: #2c2e2f;
-}
-.group-content {
-    position: relative;
-    cursor: pointer;
-}
-.group-content ul {
-    position: absolute;
-    left: 20px;
-    top: 35px;
-    color: #666;
-    z-index: 2;
-    background-color: #fff;
-    border: 1px solid #ebeef5;
-    border-radius: 4px;
-    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
-}
-.group-content ul li {
-    height: 32px;
-    line-height: 32px;
-    cursor: pointer;
-    padding: 0 20px;
-}
-.group-content ul li:hover {
-    background-color: #ecf5ff;
-    color: #66b1ff;
-}
-.sidebar-check-group {
-    color: #92a1b3;
-    padding: 20px 0 20px 0px;
-    border-top: 2px solid #2c2e2a;
-    border-bottom: 2px solid #2c2e2a;
-    text-align: center;
-}
-.sidebar-check-group >>> .el-dropdown {
-    color: #fff;
-}
-.select-network {
-    cursor: default;
-}
-.el-menu-vertical-demo >>> .is-active {
-    color: #fff !important;
-    background-color: #2c2e2f !important;
-}
 .el-menu-vertical-demo {
-    padding-top: 14px;
+    /* padding-top: 31px; */
     border: none;
 }
-.sidebar-content >>> .el-menu-item {
+.el-menu-vertical-demo >>> .el-menu-item {
     font-size: 14px;
     color: #9da2ab;
     text-align: left;
-    border-bottom: 1px solid #313437 !important;
 }
 .el-menu-vertical-demo >>> .el-submenu__title {
     padding-left: 33px;
@@ -258,20 +204,38 @@ export default {
     color: #9da2ab;
     text-align: left;
     padding-left: 57px !important;
-    height: 44px;
-    line-height: 44px;
-    border-bottom: 1px solid #313437 !important;
+    height: 46px;
+    line-height: 46px;
 }
-/* .el-menu-vertical-demo>>> .el-icon-arrow-down:before {
-    content: "\e60b"
-} */
+.sidebar-content{
+    position: relative;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE 10+ */
+    
+}
+.sidebar-content ::-webkit-scrollbar {
+  display: none; /* Chrome Safari */
+}
+.sidebar-version{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 30px;
+    color: rgba(256,256,256,0.1);
+    z-index: 9999;
+    background-color: #0c1220;
+    box-sizing: border-box;
+}
+.sidebar-version-item {
+    line-height: 22px;
+}
 .sidebar-content >>> .el-menu--collapse {
     width: 56px;
 }
 .sidebar-content >>> .el-menu--collapse .is-active .el-tooltip {
     padding-left: 17px !important;
-    color: #fff !important;
-    background-color: #2c2e2f;
+    background-color: #1e293e;
 }
 .mini-sidebar-contract-icon {
     position: relative;

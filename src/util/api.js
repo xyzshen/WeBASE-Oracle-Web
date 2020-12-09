@@ -53,3 +53,24 @@ export function getServer(data) {
         params: data
     })
 }
+
+export function getTrialUrl() {
+    return get({
+        url: `${url.ORACLE}/trial/oracleCore/url/list`,
+        method: 'get'
+    })
+}
+
+export function trialApiReq(id) {
+    return get({
+        url: `${url.ORACLE}/trial/oracleCore/api/request/${id}`,
+        method: 'get'
+    })
+}
+
+export function trialVrfReq(id) {
+    return get({
+        url: `${url.ORACLE}/trial/vrf/api/request/${id}`,
+        method: 'get'
+    })
+}

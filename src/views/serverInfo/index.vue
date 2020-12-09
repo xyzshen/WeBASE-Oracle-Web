@@ -36,23 +36,26 @@
             </div>
             <div class="search-table">
                 <el-table :data="list" tooltip-effect="dark" v-loading="loading">
-                    <el-table-column v-for="head in privateKeyHead" :label="head.name" :key="head.enName" show-overflow-tooltip :width="head.tdWidth" align="center">
+                    <el-table-column type="expand">
+                        <template slot-scope="scope">
+                            <el-form label-position="left" label-width="100px"  class="demo-table-expand">
+                                <el-form-item :label="item.name" :key="index" v-for="(item, index) in details">
+                                    <span v-if="item.enName === 'status'">{{ scope.row[item.enName] | serverStatus}}</span>
+                                    <span v-else-if="item.enName === 'keyHash'">
+                                        <i class="el-icon-copy-document font-12" @click="copyPubilcKey(scope.row[item.enName])" title="复制"></i>
+                                        {{ scope.row[item.enName]}}
+                                    </span>
+                                    <span v-else>{{scope.row[item.enName]}}</span>
+                                </el-form-item>
+                            </el-form>
+                        </template>
+                    </el-table-column>
+                    <el-table-column v-for="head in privateKeyHead" :label="head.name" :key="head.enName" show-overflow-tooltip :width="head.tdWidth" :min-width="head.minWidth" align="center">
                         <template slot-scope="scope">
                             <span v-if="head.enName ==='oracleServiceAddress'">
-                                <i class="wbs-icon-copy font-12 copy-public-key" @click="copyPubilcKey(scope.row[head.enName])" title="复制"></i>
+                                <i class="el-icon-copy-document font-12" @click="copyPubilcKey(scope.row[head.enName])" title="复制"></i>
                                 <span>
                                     {{scope.row[head.enName]}}
-                                </span>
-                            </span>
-                            <span v-else-if="head.enName ==='keyHash'">
-                                 <i class="wbs-icon-copy font-12 copy-public-key" @click="copyPubilcKey(scope.row[head.enName])" title="复制"></i>
-                                <span>
-                                    {{scope.row[head.enName]}}
-                                </span>
-                            </span>
-                            <span v-else-if="head.enName ==='status'">
-                                <span>
-                                    {{scope.row[head.enName] | serverStatus}}
                                 </span>
                             </span>
                             <span v-else>{{scope.row[head.enName]}}</span>
@@ -82,45 +85,77 @@ export default {
         privateKeyHead() {
             var arr = [
                 {
-                    enName: "index",
-                    name: '编号',
-                    tdWidth: ''
-                },
-                {
                     enName: "oracleServiceAddress",
-                    name: '服务地址',
-                    tdWidth: ''
+                    name: '运营方地址',
+                    tdWidth: '',
+                    minWidth: ''
                 },
-               
+
                 {
                     enName: "operator",
                     name: "运营方",
-                    tdWidth: ""
+                    tdWidth: "",
+                    minWidth: ''
                 },
                 {
                     enName: "url",
                     name: "访问地址",
-                    tdWidth: ""
-                },
-                 {
-                    enName: "keyHash",
-                    name: "KeyHash",
-                    tdWidth: ""
-                },
-                {
-                    enName: "status",
-                    name: "状态",
-                    tdWidth: ""
-                },
-                {
-                    enName: "latestRequstProcessedTime",
-                    name: "请求时长（ms）",
-                    tdWidth: ""
+                    tdWidth: "",
+                    minWidth: ''
                 },
                 {
                     enName: "creatTime",
                     name: "创建时间",
-                    tdWidth: ""
+                    tdWidth: "150",
+                    minWidth: ''
+                },
+            ]
+            return arr
+        },
+        details() {
+            var arr = [
+                {
+                    enName: "oracleServiceAddress",
+                    name: '运营方地址',
+                    tdWidth: '',
+                    minWidth: ''
+                },
+
+                {
+                    enName: "operator",
+                    name: "运营方",
+                    tdWidth: "",
+                    minWidth: ''
+                },
+                {
+                    enName: "url",
+                    name: "访问地址",
+                    tdWidth: "",
+                    minWidth: ''
+                },
+                {
+                    enName: "keyHash",
+                    name: "KeyHash",
+                    tdWidth: "",
+                    minWidth: ''
+                },
+                {
+                    enName: "status",
+                    name: "状态",
+                    tdWidth: "",
+                    minWidth: ''
+                },
+                {
+                    enName: "latestRequstProcessedTime",
+                    name: "请求时长(ms)",
+                    tdWidth: "",
+                    minWidth: ''
+                },
+                {
+                    enName: "creatTime",
+                    name: "创建时间",
+                    tdWidth: "",
+                    minWidth: ''
                 },
             ]
             return arr
@@ -174,7 +209,7 @@ export default {
                         if (data.data.length > 0) {
                             this.formInline.chainId = data.data[0]['chainId']
                             this.groupList = data.data[0]['groupIdList']
-                            if(this.groupList.length > 0){
+                            if (this.groupList.length > 0) {
                                 this.formInline.groupId = data.data[0]['groupIdList'][0]
                             }
                             this.onSubmit('ruleForm')
@@ -272,5 +307,8 @@ export default {
 };
 </script>
 <style scoped>
-
+.demo-table-expand .el-form-item {
+    margin-right: 0;
+    margin-bottom: 0;
+}
 </style>

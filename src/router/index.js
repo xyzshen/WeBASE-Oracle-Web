@@ -22,6 +22,8 @@ const newQuery = resolve => require(['@/views/query/query'], resolve);
 const history = resolve => require(['@/views/history'], resolve)
 const contractSearch = resolve => require(['@/views/contractSearch'], resolve);
 const serverInfo = resolve => require(['@/views/serverInfo'], resolve);
+const testApiQuery = resolve => require(['@/views/testApiQuery'], resolve);
+const testVrfQuery = resolve => require(['@/views/testVrfQuery'], resolve);
 Vue.use(Router);
 const routes = [
     {
@@ -35,7 +37,7 @@ const routes = [
         name: '历史查询',
         leaf: true,
         menuShow: true,
-        iconCls: 'wbs-icon-group sidebar-icon',
+        iconCls: 'oracle-chaxun sidebar-icon',
         children: [
             { path: '/history', component: history, name: '历史查询', enName: 'history', menuShow: true, meta: { requireAuth: false } },
         ]
@@ -43,12 +45,12 @@ const routes = [
     {
         path: '/',
         component: main,
-        name: 'oracel查询',
+        name: '请求查询',
         leaf: true,
         menuShow: true,
-        iconCls: 'wbs-icon-group sidebar-icon',
+        iconCls: 'oracle-xiangqing1 sidebar-icon',
         children: [
-            { path: '/newQuery', component: newQuery, name: 'oracle查询', enName: 'newQuery', menuShow: true, meta: { requireAuth: false } },
+            { path: '/newQuery', component: newQuery, name: '请求查询', enName: 'newQuery', menuShow: true, meta: { requireAuth: false } },
         ]
     },
     {
@@ -57,7 +59,7 @@ const routes = [
         name: '合约查询',
         leaf: true,
         menuShow: true,
-        iconCls: 'wbs-icon-group sidebar-icon',
+        iconCls: 'oracle-heyue sidebar-icon',
         children: [
             { path: '/contractSearch', component: contractSearch, name: '合约查询', enName: 'contractSearch', menuShow: true, meta: { requireAuth: false } }
         ]
@@ -65,14 +67,26 @@ const routes = [
     {
         path: '/',
         component: main,
-        name: 'Oracle服务列表',
+        name: 'Oracle服务方列表',
         leaf: true,
         menuShow: true,
-        iconCls: 'wbs-icon-group sidebar-icon',
+        iconCls: 'oracle-wangluo sidebar-icon',
         children: [
-            { path: '/serverInfo', component: serverInfo, name: 'Oracle服务列表', enName: 'serverInfo', menuShow: true, meta: { requireAuth: false } }
+            { path: '/serverInfo', component: serverInfo, name: 'Oracle服务方列表', enName: 'serverInfo', menuShow: true, meta: { requireAuth: false } }
         ]
     },
+    // {
+    //     path: '/',
+    //     component: main,
+    //     name: '测试请求',
+    //     leaf: false,
+    //     menuShow: true,
+    //     iconCls: 'wbs-icon-group sidebar-icon',
+    //     children: [
+    //         { path: '/testApiQuery', component: testApiQuery, name: 'API', enName: 'testApiQuery', menuShow: true, meta: { requireAuth: false } },
+    //         { path: '/testVrfQuery', component: testVrfQuery, name: 'VRF', enName: 'testVrfQuery', menuShow: true, meta: { requireAuth: false } },
+    //     ]
+    // },
 ]
 const router = new Router({
     routes

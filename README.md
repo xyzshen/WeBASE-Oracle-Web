@@ -18,13 +18,13 @@ nodejs下载地址：https://nodejs.org/en/download/
 
 > 执行命令：
 
-    git clone http:xx/WeBASE-Oracle-Web.git
+    git clone http:xx/TrustOracle.git
 
 将代码放在你的工作目录，例如：D：\project
 
 > 切换到项目目录：
 
-    cd D:\project\WeBASE-Oracle-Web
+    cd D:\project\TrustOracle
 
 > 使用命令：
 
