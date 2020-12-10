@@ -15,7 +15,7 @@
  */
 <template>
     <div class="rivate-key-management-wrapper">
-        <v-contentHead :headTitle="`历史记录`"></v-contentHead>
+        <v-contentHead :headTitle="`历史查询`"></v-contentHead>
         <div class="module-wrapper" style="padding-bottom: 20px;">
             <div class="search-part">
 
@@ -25,7 +25,7 @@
                     <el-table-column v-for="head in privateKeyHead" :label="head.name" :key="head.enName" show-overflow-tooltip :width="head.tdWidth" align="center">
                         <template slot-scope="scope">
                             <span v-if="head.enName ==='reqId'">
-                                <i class="wbs-icon-copy font-12 copy-public-key" @click="copyPubilcKey(scope.row[head.enName])" title="复制"></i>
+                                <i class="el-icon-copy-document font-12" @click="copyPubilcKey(scope.row[head.enName])" title="复制"></i>
                                 <span class="link" @click="link(scope.row[head.enName])">
                                     {{scope.row[head.enName]}}
                                 </span>

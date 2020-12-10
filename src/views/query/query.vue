@@ -1,6 +1,6 @@
 <template>
     <div>
-        <v-content-head :headTitle="'oracle查询'"></v-content-head>
+        <v-content-head :headTitle="'请求查询'"></v-content-head>
         <div class="module-wrapper" style="margin-bottom: 20px">
             <div class="search-part">
                 <el-input placeholder="请求ID" v-model="inputText" class="input-with-select">
@@ -10,7 +10,7 @@
         </div>
         <div class="search-table module-wrapper" v-loading='loading'>
             <div style="padding: 20px 50px 30px 50px;line-height: 40px;">
-                <p>值是:</p>
+                <p>请求查询详情:</p>
                 <ul v-if="JSON.stringify(searchResult) != '{}' ">
                     <li v-for="(item , index) in searchResultKeyList" class="result-item">
                         <template v-if="item.enName == 'result'">
